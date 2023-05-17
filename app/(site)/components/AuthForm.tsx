@@ -6,6 +6,7 @@ import Input from "@/app/components/Inputs/Input"
 import { useCallback, useState } from "react"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 import { BsGithub, BsGoogle } from "react-icons/bs"
+import axios from "axios";
 
 type Variant = "LOGIN" | "REGISTER"
 
@@ -40,7 +41,9 @@ const AuthForm = () => {
     setIsLoading(true)
 
     if (variant === 'REGISTER') {
-      // Axios Register
+      axios.post(
+          "/api/register", data
+      )
     } else {
       // NextAuth SignIn
     }
@@ -97,7 +100,8 @@ const AuthForm = () => {
               disabled={isLoading}
               fullWidth={true}
               type="submit"
-            >Log In
+            >
+              {variant === "LOGIN" ? "Login" : "Register"}
             </Button>
           </div>
         </form>
@@ -111,7 +115,7 @@ const AuthForm = () => {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="bg-white px-2 text-gray-500">
-                Or Contnuie with
+                Or Continue with
               </span>
             </div>
           </div>
@@ -131,7 +135,7 @@ const AuthForm = () => {
 
           <div
           >
-            {variant === "LOGIN" ? "New to Messanger ?" : "Already have an account ?"}
+            {variant === "LOGIN" ? "New to Messenger ?" : "Already have an account ?"}
           </div>
           <div className="underline cursor-pointer">
             {variant === "LOGIN" ? "Create an Account" : "Login"}
