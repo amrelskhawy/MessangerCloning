@@ -1,54 +1,50 @@
 "use client"
 
-import clsx from "clsx";
 import Link from "next/link"
-
-
-interface DesktopItemProps {
-    label: string
+import clsx from "clsx";
+interface MobileItemProps {
     icon: any
     href: string
     onClick?: () => void
     active?: boolean
 }
 
-const DesktopItem: React.FC<DesktopItemProps> = ({
-    label,
+const MobileItem: React.FC<MobileItemProps>  = ({
     icon:  Icon,
     href,
     onClick,
-    active,
+    active
 }) => {
+
     const handleClick = () => {
         if ( onClick ) {
             return onClick();
         }
     }
-    return (
-        <li onClick={handleClick}>
-            <Link href={href}
-                className={clsx(`
+    return(
+            <Link onClick={handleClick} href={href}
+                  className={clsx(`
                         group
                         flex
                         gap-x-3
                         rounded-md
-                        p-3
-                        text-sm
+                        p-4
                         leading-6
+                        text-sm
+                        w-full
+                        justify-center
                         font-semibold
                         text-gray-500
                         hover:text-black
                         hover:bg-gray-100
                     `,
-                        active && 'text-black bg-gray-100'
-                    )
-                }
+                      active && 'text-black bg-gray-100'
+                  )
+                  }
             >
                 <Icon className={"h-6 w-6 shrink-0"} />
-                <span className={'sr-only'}>{label}</span>
             </Link>
-        </li>
     )
 }
 
-export default DesktopItem
+export default MobileItem

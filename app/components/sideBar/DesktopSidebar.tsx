@@ -3,11 +3,17 @@
 import useRoutes from "@/app/hooks/useRoutes";
 import {useState} from "react";
 import DesktopItem from "@/app/components/sideBar/DesktopItem";
+import {User} from "@prisma/client"
+interface DesktopSidebarProps {
+    currentUser: User
+}
 
-const DesktopSidebar = () => {
+const DesktopSidebar: React.FC<DesktopSidebarProps> = ({currentUser}) => {
     const routes = useRoutes()
     const [isopen,setIsOpen]
         = useState(false)
+
+    console.log({currentUser})
     return (
         <div
         className={`hidden 
