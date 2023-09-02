@@ -8,8 +8,8 @@ export default async function SideBar({
     const currentUser = await getCurrentUser();
      return (
          <div className={'h-full'}>
-             <DesktopSidebar currentUser={currentUser} />
-             <MobileFooter currentUser={currentUser} />
+             <DesktopSidebar currentUser={currentUser!} />
+             <MobileFooter currentUser={currentUser!} />
              <div className={'lg:pl-20 h-full'}>
                  {children}
              </div>
